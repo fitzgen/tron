@@ -144,13 +144,13 @@
     var endGame = wu.compose(
         wu.bind($("#connect"), $.fn.click),
         wu.match([-1], function () { 
-                     sessionStorage.losses += 1;
+                     sessionStorage.losses = parseInt(sessionStorage.losses, 10) + 1;
                  },
                  [0], function () {
-                     sessionStorage.draws += 1;
+                     sessionStorage.draws += parseInt(sessionStorage.draws, 10) + 1;
                  },
                  [1], function () {
-                     sessionStorage.wins += 1;
+                     sessionStorage.wins += parseInt(sessionStorage.wins, 10) + 1;
                  }),
         function (status) {
             CONNECTION.close();
@@ -296,9 +296,9 @@
         // Keep updating the score display.
         var display = $("#display");
         setInterval(function () {
-            display.find("#wins").html(sessionStorage.wins);
-            display.find("#losses").html(sessionStorage.losses);
-            display.find("#draws").html(sessionStorage.draws);
+            display.find("#wins").html(parseInt(sessionStorage.wins, 10));
+            display.find("#losses").html(parseInt(sessionStorage.losses, 10));
+            display.find("#draws").html(parseInt(sessionStorage.draws, 10));
         }, 100);
 
     });
